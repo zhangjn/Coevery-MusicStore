@@ -37,7 +37,7 @@ namespace MusicStore {
 
             SchemaBuilder.CreateTable("Genre",
                 table => table
-                    .Column<int>("GenreId", col => col.PrimaryKey().Identity().NotNull())
+                    .Column<int>("GenreId", col => col.PrimaryKey().Identity())
                     .Column<string>("Name", col => col.NotNull().WithLength(120))
                     .Column<string>("Description", col => col.NotNull())
                 );
