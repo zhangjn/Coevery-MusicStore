@@ -1,0 +1,7 @@
+<MSDeploy.iisApp>
+  <iisapp path="Coevery" managedRuntimeVersion="v4.0" />
+	<setAcl path="Coevery/App_Data" setAclAccess="Modify" />
+	<setAcl path="Coevery/Media" setAclAccess="Modify" />
+	<setAcl path="Coevery/bin/HostRestart" setAclAccess="Modify" />
+	<dbFullSql path="install.sql" />
+</MSDeploy.iisApp>
