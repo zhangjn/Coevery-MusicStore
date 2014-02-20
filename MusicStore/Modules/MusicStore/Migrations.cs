@@ -11,7 +11,7 @@ namespace MusicStore {
                     .Column<int>("GenreId", col => col.NotNull())
                     .Column<int>("ArtistId", col => col.NotNull())
                     .Column<string>("Title", col => col.WithLength(160))
-                    .Column<double>("Price", col => col.WithPrecision(10).WithScale(2))
+                    .Column<decimal>("Price", col => col.WithPrecision(10).WithScale(2))
                     .Column<string>("AlbumArtUrl",
                         col => col.WithLength(1024).WithDefault("/Content/Images/placeholder.gif"))
                     .Column<string>("PasswordSalt")
