@@ -57,7 +57,7 @@ namespace MusicStore {
                     .Column<string>("Country", col => col.WithType(DbType.String).WithLength(40))
                     .Column<string>("Phone", col => col.WithType(DbType.String).WithLength(24))
                     .Column<string>("Email", col => col.WithType(DbType.String).WithLength(160))
-                    .Column<decimal>("Total", col => col.WithType(DbType.VarNumeric).WithScale(10).WithPrecision(2).NotNull())
+                    .Column<decimal>("Total", col => col.WithPrecision(10).WithScale(2).NotNull())
                 );
 
             SchemaBuilder.CreateTable("OrderDetail",
@@ -66,7 +66,7 @@ namespace MusicStore {
                     .Column<int>("OrderId", col => col.NotNull())
                     .Column<int>("AlbumId", col => col.NotNull())
                     .Column<int>("Quantity", col => col.NotNull())
-                    .Column<decimal>("UnitPrice", col => col.WithType(DbType.VarNumeric).WithScale(10).WithPrecision(2).NotNull())
+                    .Column<decimal>("UnitPrice", col => col.WithPrecision(10).WithScale(2).NotNull())
                 );
 
             return 1;
