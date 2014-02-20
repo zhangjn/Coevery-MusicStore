@@ -5,11 +5,11 @@ using System.Web.Mvc;
 
 namespace MusicStore.Models
 {
-    [Bind(Exclude = "OrderId")]
+    [Bind(Exclude = "Id")]
     public class Order
     {
         [ScaffoldColumn(false)]
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
         [ScaffoldColumn(false)]
         public System.DateTime OrderDate { get; set; }

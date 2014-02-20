@@ -10,7 +10,7 @@ namespace MusicStore.Models
     public class Album
     {
         [ScaffoldColumn(false)]
-        public int AlbumId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Genre")]
         public int GenreId { get; set; }

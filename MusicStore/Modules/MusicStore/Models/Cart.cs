@@ -5,7 +5,7 @@ namespace MusicStore.Models
     public class Cart
     {
         [Key]
-        public int RecordId { get; set; }
+        public int Id { get; set; }
         public string CartId { get; set; }
         public int AlbumId { get; set; }
         public int Count { get; set; }

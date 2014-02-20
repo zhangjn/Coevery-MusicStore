@@ -7,7 +7,7 @@ namespace MusicStore {
         public int Create() {
             SchemaBuilder.CreateTable("Album",
                 table => table
-                    .Column<int>("AlbumId", col => col.PrimaryKey().Identity())
+                    .Column<int>("Id", col => col.PrimaryKey().Identity())
                     .Column<int>("GenreId", col => col.NotNull())
                     .Column<int>("ArtistId", col => col.NotNull())
                     .Column<string>("Title", col => col.WithLength(160))
@@ -18,13 +18,13 @@ namespace MusicStore {
 
             SchemaBuilder.CreateTable("Artist",
                 table => table
-                    .Column<int>("ArtistId", col => col.PrimaryKey().Identity())
+                    .Column<int>("Id", col => col.PrimaryKey().Identity())
                     .Column<string>("Name", col => col.WithLength(120))
                 );
 
             SchemaBuilder.CreateTable("Cart",
                table => table
-                   .Column<int>("RecordId", col => col.PrimaryKey().Identity())
+                   .Column<int>("Id", col => col.PrimaryKey().Identity())
                    .Column<string>("CartId", col => col.NotNull().WithType(DbType.AnsiString).WithLength(50))
                    .Column<int>("AlbumId", col => col.NotNull())
                    .Column<int>("Count", col => col.NotNull())
@@ -33,14 +33,14 @@ namespace MusicStore {
 
             SchemaBuilder.CreateTable("Genre",
                 table => table
-                    .Column<int>("GenreId", col => col.PrimaryKey().Identity())
+                    .Column<int>("Id", col => col.PrimaryKey().Identity())
                     .Column<string>("Name", col => col.WithLength(120))
                     .Column<string>("Description", col => col.WithLength(4000))
                 );
 
             SchemaBuilder.CreateTable("Order",
                 table => table
-                    .Column<int>("OrderId", col => col.PrimaryKey().Identity())
+                    .Column<int>("Id", col => col.PrimaryKey().Identity())
                     .Column<DateTime>("OrderDate", col => col.NotNull())
                     .Column<string>("Username", col => col.WithType(DbType.String).WithLength(256))
                     .Column<string>("FirstName", col => col.WithType(DbType.String).WithLength(160))
@@ -57,7 +57,7 @@ namespace MusicStore {
 
             SchemaBuilder.CreateTable("OrderDetail",
                 table => table
-                    .Column<int>("OrderDetailId", col => col.PrimaryKey().Identity())
+                    .Column<int>("Id", col => col.PrimaryKey().Identity())
                     .Column<int>("OrderId", col => col.NotNull())
                     .Column<int>("AlbumId", col => col.NotNull())
                     .Column<int>("Quantity", col => col.NotNull())
@@ -66,23 +66,23 @@ namespace MusicStore {
 
             SchemaBuilder.CreateForeignKey("FK_Album_Genre",
                 "Album", new string[] { "GenreId" },
-                "Genre", new string[] { "GenreId" });
+                "Genre", new string[] { "Id" });
 
             SchemaBuilder.CreateForeignKey("FK_Album_Artist",
                 "Album", new string[] { "ArtistId" },
-                "Artist", new string[] { "ArtistId" });
+                "Artist", new string[] { "Id" });
 
             SchemaBuilder.CreateForeignKey("FK_Cart_Album",
                 "Cart", new string[] { "AlbumId" },
-                "Album", new string[] { "AlbumId" });
+                "Album", new string[] { "Id" });
 
             SchemaBuilder.CreateForeignKey("FK_OrderDetail_Album",
                 "OrderDetail", new string[] { "AlbumId" },
-                "Album", new string[] { "AlbumId" });
+                "Album", new string[] { "Id" });
 
             SchemaBuilder.CreateForeignKey("FK_OrderDetail_Order",
                 "OrderDetail", new string[] { "OrderId" },
-                "Order", new string[] { "OrderId" });
+                "Order", new string[] { "Id" });
 
             return 1;
         }
