@@ -13,11 +13,7 @@ namespace MusicStore {
                     .Column<string>("Title", col => col.WithLength(160))
                     .Column<decimal>("Price", col => col.WithPrecision(10).WithScale(2))
                     .Column<string>("AlbumArtUrl",
-                        col => col.WithLength(1024).WithDefault("/Content/Images/placeholder.gif"))
-                    .Column<string>("PasswordSalt")
-                    .Column<string>("RegistrationStatus", col => col.WithDefault("Approved"))
-                    .Column<string>("EmailStatus", col => col.WithDefault("Approved"))
-                    .Column<string>("EmailChallengeToken")
+                    col => col.WithLength(1024).WithDefault("/Content/Images/placeholder.gif"))
                 );
 
             SchemaBuilder.CreateTable("Artist",
@@ -29,7 +25,7 @@ namespace MusicStore {
             SchemaBuilder.CreateTable("Cart",
                table => table
                    .Column<int>("RecordId", col => col.PrimaryKey().Identity())
-                   .Column<string>("CartId", col => col.NotNull().WithLength(50))
+                   .Column<string>("CartId", col => col.NotNull().WithType(DbType.AnsiString).WithLength(50))
                    .Column<int>("AlbumId", col => col.NotNull())
                    .Column<int>("Count", col => col.NotNull())
                    .Column<DateTime>("DateCreated", col => col.NotNull())
