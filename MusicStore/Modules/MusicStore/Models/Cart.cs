@@ -1,15 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace MusicStore.Models
-{
-    public class Cart
-    {
+namespace MusicStore.Models {
+    public class Cart {
         [Key]
-        public int Id { get; set; }
-        public string CartId { get; set; }
-        public int AlbumId { get; set; }
-        public int Count { get; set; }
-        public System.DateTime DateCreated { get; set; }
+        public virtual int Id { get; set; }
+
+        public virtual string CartId { get; set; }
+        public virtual int AlbumId { get; set; }
+        public virtual int Count { get; set; }
+        public virtual DateTime DateCreated { get; set; }
 
         public virtual Album Album { get; set; }
     }

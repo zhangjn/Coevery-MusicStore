@@ -15,7 +15,6 @@ namespace MusicStore.Controllers {
         public ActionResult Index() {
             // Get most popular albums
             var albums = GetTopSellingAlbums(5);
-            _albumRepository.Get(1);
             return View(albums);
         }
 
