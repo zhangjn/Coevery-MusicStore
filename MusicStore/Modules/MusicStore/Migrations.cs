@@ -26,6 +26,23 @@ namespace MusicStore {
                     .Column<string>("Name", col => col.WithLength(120))
                 );
 
+            SchemaBuilder.CreateTable("Cart",
+               table => table
+                   .Column<int>("RecordId", col => col.PrimaryKey().Identity())
+                   .Column<string>("CartId", col => col.NotNull().WithLength(50))
+                   .Column<int>("AlbumId", col => col.NotNull())
+                   .Column<int>("Count", col => col.NotNull())
+                   .Column<DateTime>("DateCreated", col => col.NotNull())
+               );
+
+            SchemaBuilder.CreateTable("Genre",
+                table => table
+                    .Column<int>("GenreId", col => col.PrimaryKey().Identity().NotNull())
+                    .Column<string>("Name", col => col.NotNull().WithLength(120))
+                    .Column<string>("Description", col => col.NotNull())
+                );
+
+
             SchemaBuilder.CreateTable("Order",
                 table => table
                     .Column<int>("OrderId", col => col.PrimaryKey().Identity())
