@@ -64,6 +64,26 @@ namespace MusicStore {
                     .Column<decimal>("UnitPrice", col => col.WithPrecision(10).WithScale(2).NotNull())
                 );
 
+            SchemaBuilder.CreateForeignKey("FK_Album_Genre",
+                "Album", new string[] { "GenreId" },
+                "Genre", new string[] { "GenreId" });
+
+            SchemaBuilder.CreateForeignKey("FK_Album_Artist",
+                "Album", new string[] { "ArtistId" },
+                "Artist", new string[] { "ArtistId" });
+
+            SchemaBuilder.CreateForeignKey("FK_Cart_Album",
+                "Cart", new string[] { "AlbumId" },
+                "Album", new string[] { "AlbumId" });
+
+            SchemaBuilder.CreateForeignKey("FK_OrderDetail_Album",
+                "OrderDetail", new string[] { "AlbumId" },
+                "Album", new string[] { "AlbumId" });
+
+            SchemaBuilder.CreateForeignKey("FK_OrderDetail_Order",
+                "OrderDetail", new string[] { "OrderId" },
+                "Order", new string[] { "OrderId" });
+
             return 1;
         }
     }
