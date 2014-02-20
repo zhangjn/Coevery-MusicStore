@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Data;
 using Coevery.Data.Migration;
-namespace MusicStore
-{
-    public class MusicStoreDataMigration : DataMigrationImpl
-    {
-        public int Create()
-        {
+
+namespace MusicStore {
+    public class MusicStoreDataMigration : DataMigrationImpl {
+        public int Create() {
             SchemaBuilder.CreateTable("Album",
                 table => table
                     .Column<int>("AlbumId", col => col.PrimaryKey().Identity())
@@ -17,8 +15,8 @@ namespace MusicStore
                     .Column<string>("AlbumArtUrl",
                         col => col.WithLength(1024).WithDefault("/Content/Images/placeholder.gif"))
                     .Column<string>("PasswordSalt")
-                    .Column<string>("RegistrationStatus", c => c.WithDefault("Approved"))
-                    .Column<string>("EmailStatus", c => c.WithDefault("Approved"))
+                    .Column<string>("RegistrationStatus", col => col.WithDefault("Approved"))
+                    .Column<string>("EmailStatus", col => col.WithDefault("Approved"))
                     .Column<string>("EmailChallengeToken")
                 );
 
@@ -27,24 +25,23 @@ namespace MusicStore
                     .Column<int>("ArtistId", col => col.PrimaryKey().Identity())
                     .Column<string>("Name", col => col.WithLength(120))
                 );
- SchemaBuilder.CreateTable("OrderRecord",
-                table => table
-                    .Column<int>("OrderId", c => c.PrimaryKey().Identity())
-                    .Column<DateTime>("OrderDate", c => c.NotNull())
-                    .Column<string>("Username", c => c.WithType(DbType.String).WithLength(256))
-                    .Column<string>("FirstName", c => c.WithType(DbType.String).WithLength(160))
-                    .Column<string>("LastName", c => c.WithType(DbType.String).WithLength(160))
-                    .Column<string>("Address", c => c.WithType(DbType.String).WithLength(70))
-                    .Column<string>("City", c => c.WithType(DbType.String).WithLength(40))
-                    .Column<string>("State", c => c.WithType(DbType.String).WithLength(40))
-                    .Column<string>("PostalCode", c => c.WithType(DbType.String).WithLength(10))
-                    .Column<string>("Country", c => c.WithType(DbType.String).WithLength(40))
-                    .Column<string>("Phone", c => c.WithType(DbType.String).WithLength(24))
-                    .Column<string>("Email", c => c.WithType(DbType.String).WithLength(160))
-                    .Column<decimal>("Total", c => c.WithType(DbType.VarNumeric).WithScale(10).WithPrecision(2).NotNull())
-                );
 
-                
+            SchemaBuilder.CreateTable("OrderRecord",
+                table => table
+                    .Column<int>("OrderId", col => col.PrimaryKey().Identity())
+                    .Column<DateTime>("OrderDate", col => col.NotNull())
+                    .Column<string>("Username", col => col.WithType(DbType.String).WithLength(256))
+                    .Column<string>("FirstName", col => col.WithType(DbType.String).WithLength(160))
+                    .Column<string>("LastName", col => col.WithType(DbType.String).WithLength(160))
+                    .Column<string>("Address", col => col.WithType(DbType.String).WithLength(70))
+                    .Column<string>("City", col => col.WithType(DbType.String).WithLength(40))
+                    .Column<string>("State", col => col.WithType(DbType.String).WithLength(40))
+                    .Column<string>("PostalCode", col => col.WithType(DbType.String).WithLength(10))
+                    .Column<string>("Country", col => col.WithType(DbType.String).WithLength(40))
+                    .Column<string>("Phone", col => col.WithType(DbType.String).WithLength(24))
+                    .Column<string>("Email", col => col.WithType(DbType.String).WithLength(160))
+                    .Column<decimal>("Total", col => col.WithType(DbType.VarNumeric).WithScale(10).WithPrecision(2).NotNull())
+                );
 
             return 1;
         }
