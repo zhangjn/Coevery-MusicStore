@@ -1,7 +1,6 @@
-﻿using System.Data;
-using Coevery.ContentManagement.MetaData;
+﻿using System;
+using System.Data;
 using Coevery.Data.Migration;
-
 namespace MusicStore
 {
     public class MusicStoreDataMigration : DataMigrationImpl
@@ -28,6 +27,24 @@ namespace MusicStore
                     .Column<int>("ArtistId", col => col.PrimaryKey().Identity())
                     .Column<string>("Name", col => col.WithLength(120))
                 );
+ SchemaBuilder.CreateTable("OrderRecord",
+                table => table
+                    .Column<int>("OrderId", c => c.PrimaryKey().Identity())
+                    .Column<DateTime>("OrderDate", c => c.NotNull())
+                    .Column<string>("Username", c => c.WithType(DbType.String).WithLength(256))
+                    .Column<string>("FirstName", c => c.WithType(DbType.String).WithLength(160))
+                    .Column<string>("LastName", c => c.WithType(DbType.String).WithLength(160))
+                    .Column<string>("Address", c => c.WithType(DbType.String).WithLength(70))
+                    .Column<string>("City", c => c.WithType(DbType.String).WithLength(40))
+                    .Column<string>("State", c => c.WithType(DbType.String).WithLength(40))
+                    .Column<string>("PostalCode", c => c.WithType(DbType.String).WithLength(10))
+                    .Column<string>("Country", c => c.WithType(DbType.String).WithLength(40))
+                    .Column<string>("Phone", c => c.WithType(DbType.String).WithLength(24))
+                    .Column<string>("Email", c => c.WithType(DbType.String).WithLength(160))
+                    .Column<decimal>("Total", c => c.WithType(DbType.VarNumeric).WithScale(10).WithPrecision(2).NotNull())
+                );
+
+                
 
             return 1;
         }
