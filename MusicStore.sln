@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore", "MusicStore\MusicStore.csproj", "{F1CA3922-5615-4164-85B0-FF3CF2A79AA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Web", "MusicStore\MusicStore.Web.csproj", "{F1CA3922-5615-4164-85B0-FF3CF2A79AA7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{4B8BF982-7E3C-41B5-9DC5-C99713965DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore", "MusicStore\Modules\MusicStore\MusicStore.csproj", "{79AED36E-ABD0-4747-93D3-8722B042454B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{F1CA3922-5615-4164-85B0-FF3CF2A79AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1CA3922-5615-4164-85B0-FF3CF2A79AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1CA3922-5615-4164-85B0-FF3CF2A79AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79AED36E-ABD0-4747-93D3-8722B042454B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79AED36E-ABD0-4747-93D3-8722B042454B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79AED36E-ABD0-4747-93D3-8722B042454B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79AED36E-ABD0-4747-93D3-8722B042454B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79AED36E-ABD0-4747-93D3-8722B042454B} = {4B8BF982-7E3C-41B5-9DC5-C99713965DBD}
 	EndGlobalSection
 EndGlobal
