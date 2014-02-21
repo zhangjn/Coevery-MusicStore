@@ -170,6 +170,7 @@
     <Content Include="Themes\MusicStoreTheme\Styles\Site.css" />
     <Content Include="Themes\MusicStoreTheme\Theme.png" />
     <Content Include="Themes\MusicStoreTheme\Theme.txt" />
+    <Content Include="Themes\MusicStoreTheme\Views\Document.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,9 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Themes\MusicStoreTheme\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Themes\MusicStoreTheme\Views\Document.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
