@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Coevery;
 using Coevery.Data;
 
 namespace MusicStore.Models {
@@ -10,19 +11,24 @@ namespace MusicStore.Models {
         private readonly IRepository<Cart> _cartRepository;
         private readonly IRepository<OrderDetail> _orderDetailRepository;
 
+        public ShoppingCart(ICoeveryServices services) {
+            _cartRepository = services.WorkContext.Resolve<IRepository<Cart>>();
+            _orderDetailRepository = services.WorkContext.Resolve<IRepository<OrderDetail>>();
+        }
+
         private string ShoppingCartId { get; set; }
 
         public const string CartSessionKey = "CartId";
 
-        public static ShoppingCart GetCart(HttpContextBase context) {
-            var cart = new ShoppingCart();
+        public static ShoppingCart GetCart(HttpContextBase context, ICoeveryServices services) {
+            var cart = new ShoppingCart(services);
             cart.ShoppingCartId = cart.GetCartId(context);
             return cart;
         }
 
         // Helper method to simplify shopping cart calls
-        public static ShoppingCart GetCart(Controller controller) {
-            return GetCart(controller.HttpContext);
+        public static ShoppingCart GetCart(Controller controller, ICoeveryServices services) {
+            return GetCart(controller.HttpContext, services);
         }
 
         public void AddToCart(Album album) {

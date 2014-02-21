@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Coevery;
 using Coevery.Data;
 using Coevery.Themes;
 using MusicStore.Models;
@@ -11,16 +12,19 @@ namespace MusicStore.Controllers {
         private readonly IRepository<Album> _albumRepository;
         private readonly IRepository<Cart> _cartRepository;
 
-        public ShoppingCartController(IRepository<Album> albumRepository, IRepository<Cart> cartRepository) {
+        public ShoppingCartController(IRepository<Album> albumRepository, IRepository<Cart> cartRepository, ICoeveryServices services) {
             _albumRepository = albumRepository;
             _cartRepository = cartRepository;
+            Services = services;
         }
+
+        public ICoeveryServices Services { get; set; }
 
         //
         // GET: /ShoppingCart/
 
         public ActionResult Index() {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel {
@@ -41,7 +45,7 @@ namespace MusicStore.Controllers {
                 .Single(album => album.Id == id);
 
             // Add it to the shopping cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
 
             cart.AddToCart(addedAlbum);
 
@@ -55,7 +59,7 @@ namespace MusicStore.Controllers {
         [HttpPost]
         public ActionResult RemoveFromCart(int id) {
             // Remove the item from the cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
 
             // Get the name of the album to display confirmation
             string albumName = _cartRepository.Table
@@ -82,7 +86,7 @@ namespace MusicStore.Controllers {
 
         [ChildActionOnly]
         public ActionResult CartSummary() {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
 
             ViewData["CartCount"] = cart.GetCount();
 

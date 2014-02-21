@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Coevery;
 using Coevery.Data;
 using Coevery.Themes;
 using MusicStore.Models;
@@ -12,9 +13,12 @@ namespace MusicStore.Controllers {
         private readonly IRepository<Order> _orderRepository;
         private const string PromoCode = "FREE";
 
-        public CheckoutController(IRepository<Order> orderRepository) {
+        public CheckoutController(IRepository<Order> orderRepository, ICoeveryServices services) {
             _orderRepository = orderRepository;
+            Services = services;
         }
+
+        public ICoeveryServices Services { get; set; }
 
         //
         // GET: /Checkout/AddressAndPayment
@@ -44,7 +48,7 @@ namespace MusicStore.Controllers {
                     _orderRepository.Create(order);
 
                     //Process the order
-                    var cart = ShoppingCart.GetCart(this.HttpContext);
+                    var cart = ShoppingCart.GetCart(this.HttpContext, Services);
                     cart.CreateOrder(order);
 
                     return RedirectToAction("Complete",
