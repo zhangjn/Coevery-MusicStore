@@ -33,12 +33,12 @@ namespace MusicStore.Models {
 
         public void AddToCart(Album album) {
             // Get the matching cart and album instances
-            var cartItem = _cartRepository.Table.SingleOrDefault(c => c.Cart_Id == ShoppingCartId && c.Album_Id == album.Id);
+            var cartItem = _cartRepository.Table.SingleOrDefault(c => c.Cart_Id == ShoppingCartId && c.Album == album);
 
             if(cartItem == null) {
                 // Create a new cart item if no cart item exists
                 cartItem = new Cart {
-                    Album_Id = album.Id,
+                    Album = album,
                     Cart_Id = ShoppingCartId,
                     Count = 1,
                     DateCreated = DateTime.Now
@@ -113,7 +113,7 @@ namespace MusicStore.Models {
             // Iterate over the items in the cart, adding the order details for each
             foreach(var item in cartItems) {
                 var orderDetail = new OrderDetail {
-                    Album_Id = item.Album_Id,
+                    Album_Id = item.Album.Id,
                     Order_Id = order.Id,
                     UnitPrice = item.Album.Price,
                     Quantity = item.Count
