@@ -61,6 +61,6 @@ namespace MusicStore.Models {
         [ScaffoldColumn(false)]
         public virtual decimal Total { get; set; }
 
-        public virtual List<OrderDetail> OrderDetails { get; set; }
+        public virtual IList<OrderDetail> OrderDetails { get; set; }
     }
 }

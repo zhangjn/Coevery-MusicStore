@@ -8,10 +8,10 @@ namespace MusicStore.Models {
         public virtual int Id { get; set; }
 
         [DisplayName("Genre")]
-        public virtual int GenreId { get; set; }
+        public virtual int Genre_Id { get; set; }
 
         [DisplayName("Artist")]
-        public virtual int ArtistId { get; set; }
+        public virtual int Artist_Id { get; set; }
 
         [Required(ErrorMessage = "An Album Title is required")]
         [StringLength(160)]
@@ -28,6 +28,6 @@ namespace MusicStore.Models {
 
         public virtual Genre Genre { get; set; }
         public virtual Artist Artist { get; set; }
-        public virtual List<OrderDetail> OrderDetails { get; set; }
+        public virtual IList<OrderDetail> OrderDetails { get; set; }
     }
 }
