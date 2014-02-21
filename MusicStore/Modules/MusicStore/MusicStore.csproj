@@ -100,6 +100,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +110,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Checkout\AddressAndPayment.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\ShoppingCart\CartSummary.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\StoreManager\Create.cshtml" />
+    <Content Include="Views\StoreManager\Delete.cshtml" />
+    <Content Include="Views\StoreManager\Details.cshtml" />
+    <Content Include="Views\StoreManager\Edit.cshtml" />
+    <Content Include="Views\StoreManager\Index.cshtml" />
+    <Content Include="Views\Store\Browse.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\GenreMenu.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
