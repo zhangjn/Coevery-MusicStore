@@ -17,11 +17,10 @@ namespace MusicStore.Controllers {
         public ActionResult Index() {
             // Get most popular albums
             var albums = GetTopSellingAlbums(5);
-            return null;
+            return View(albums);
         }
 
-        private List<Album> GetTopSellingAlbums(int count)
-        {
+        private List<Album> GetTopSellingAlbums(int count) {
             // Group the order details by album and return
             // the albums with the highest count
 
