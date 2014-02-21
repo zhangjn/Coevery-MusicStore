@@ -1,6 +1,6 @@
 ﻿@model List<MusicStore.Models.Album>
 @{
-    ViewBag.Title = "ASP.NET MVC Music Store";
+    Layout.Title = "ASP.NET MVC Music Store";
 }
 <div id="promotion">
 </div>
@@ -8,13 +8,12 @@
 <h3><em>Fresh</em> off the grill</h3>
 
 <ul id="album-list">
-    @foreach (var album in Model)
-    {
+    @foreach(var album in Model) {
         <li><a href="@Url.Action("Details", "Store",
-                new { id = album.Id })">
+                         new {id = album.Id})">
 
-            <img alt="@album.Title" src="@album.AlbumArtUrl" />
-            <span>@album.Title</span> </a>
+                <img alt="@album.Title" src="@album.AlbumArtUrl" />
+                <span>@album.Title</span> </a>
         </li>
     }
 </ul>
