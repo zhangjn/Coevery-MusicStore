@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Web.Mvc;
 using Coevery.Data;
+using Coevery.Themes;
 using MusicStore.Models;
 
 namespace MusicStore.Controllers {
+    [Themed]
     public class HomeController : Controller {
         private readonly IRepository<Album> _albumRepository;
 

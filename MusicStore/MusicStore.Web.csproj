@@ -163,6 +163,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Themes\MusicStoreTheme\Content\Images\home-showcase.png" />
+    <Content Include="Themes\MusicStoreTheme\Content\Images\logo.png" />
+    <Content Include="Themes\MusicStoreTheme\Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Themes\MusicStoreTheme\Scripts\Web.config" />
+    <Content Include="Themes\MusicStoreTheme\Styles\Site.css" />
+    <Content Include="Themes\MusicStoreTheme\Theme.png" />
+    <Content Include="Themes\MusicStoreTheme\Theme.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -174,6 +181,17 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\MusicStoreTheme\Content\Web.config" />
+    <Content Include="Themes\MusicStoreTheme\Styles\Web.config" />
+    <Content Include="Themes\MusicStoreTheme\Views\Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\MusicStoreTheme\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Themes\MusicStoreTheme\Views\Document.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

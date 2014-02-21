@@ -1,0 +1,7 @@
+﻿Name: MusicStoreTheme
+Author: coevery team
+Description: The music store theme
+Version: 1.6
+Tags: Awesome
+Website: http://www.coevery.com
+Zones: Content

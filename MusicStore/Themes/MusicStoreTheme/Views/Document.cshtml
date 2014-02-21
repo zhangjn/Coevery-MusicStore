@@ -1,0 +1,15 @@
+﻿@{
+    string title = Convert.ToString(Model.Title);
+    string siteName = Convert.ToString(WorkContext.CurrentSite.SiteName);
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        @Display(Model.Head)
+    </head>
+    <body>
+        @Display(Model.Body)
+        @Display(Model.Tail)
+    </body>
+</html>
