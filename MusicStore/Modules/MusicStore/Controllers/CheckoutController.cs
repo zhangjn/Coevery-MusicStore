@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Web.Mvc;
 using Coevery.Data;
+using Coevery.Themes;
 using MusicStore.Models;
 
 namespace MusicStore.Controllers {
     [Authorize]
+    [Themed]
     public class CheckoutController : Controller {
         private readonly IRepository<Order> _orderRepository;
         private const string PromoCode = "FREE";

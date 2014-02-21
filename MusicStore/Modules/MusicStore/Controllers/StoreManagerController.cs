@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Coevery.Data;
+using Coevery.Themes;
 using MusicStore.Models;
 
 namespace MusicStore.Controllers {
+
     [Authorize(Roles = "Administrator")]
+    [Themed]
     public class StoreManagerController : Controller {
         private readonly IRepository<Album> _albumRepository;
         private readonly IRepository<Genre> _genreRepository;

@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Coevery.Data;
+using Coevery.Themes;
 using MusicStore.Models;
 using MusicStore.ViewModels;
 
 namespace MusicStore.Controllers {
+    [Themed]
     public class ShoppingCartController : Controller {
         private readonly IRepository<Album> _albumRepository;
         private readonly IRepository<Cart> _cartRepository;
