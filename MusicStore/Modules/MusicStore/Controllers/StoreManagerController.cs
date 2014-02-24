@@ -42,8 +42,8 @@ namespace MusicStore.Controllers {
         // GET: /StoreManager/Create
 
         public ActionResult Create() {
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name");
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name");
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name");
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name");
             return View();
         }
 
