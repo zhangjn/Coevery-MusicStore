@@ -51,15 +51,22 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Create
 
         [HttpPost]
-        public ActionResult Create(Album album) {
+        public ActionResult Create(Album album){
+            var genreId = int.Parse(Request.Form["Genre_Id"]);
+            var artistId = int.Parse(Request.Form["Artist_Id"]);
+
+            album.Genre = _genreRepository.Get(genreId);
+            album.Artist = _artistRepository.Get(artistId);
+
             if(ModelState.IsValid) {
+                
                 _albumRepository.Create(album);
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", genreId);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", artistId);
             return View(album);
         }
 
@@ -67,9 +74,11 @@ namespace MusicStore.Controllers {
         // GET: /StoreManager/Edit/5
 
         public ActionResult Edit(int id) {
+
             Album album = _albumRepository.Get(id);
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
+
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
             return View(album);
         }
 
@@ -78,11 +87,13 @@ namespace MusicStore.Controllers {
 
         [HttpPost]
         public ActionResult Edit(Album album) {
-            if(ModelState.IsValid) {
+
+            if(ModelState.IsValid)
+            {
                 return RedirectToAction("Index");
             }
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
             return View(album);
         }
 

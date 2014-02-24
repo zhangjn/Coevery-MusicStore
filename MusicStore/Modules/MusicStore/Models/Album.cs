@@ -9,11 +9,11 @@ namespace MusicStore.Models {
         [ScaffoldColumn(false)]
         public virtual int Id { get; set; }
 
-        [DisplayName("Genre")]
-        public virtual int Genre_Id { get; set; }
+        //[DisplayName("Genre")]
+        //public virtual int Genre_Id { get; set; }
 
-        [DisplayName("Artist")]
-        public virtual int Artist_Id { get; set; }
+        //[DisplayName("Artist")]
+        //public virtual int Artist_Id { get; set; }
 
         [Required(ErrorMessage = "An Album Title is required")]
         [StringLength(160)]
