@@ -1,4 +1,4 @@
-﻿@model MusicStore.Models.Album
+﻿@model MusicStore.ViewModels.AlbumViewModel
 
 @{
     Layout.Title = "Create";
@@ -14,19 +14,19 @@
         <legend>Album</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Genre.Id, "Genre")
+            @Html.LabelFor(model => model.GenreId, "Genre")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Genre_Id", String.Empty)
-            @Html.ValidationMessageFor(model => model.Genre.Id)
+            @Html.DropDownList("GenreId", String.Empty)
+            @Html.ValidationMessageFor(model => model.GenreId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Artist.Id, "Artist")
+            @Html.LabelFor(model => model.ArtistId, "Artist")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Artist_Id", String.Empty)
-            @Html.ValidationMessageFor(model => model.Artist.Id)
+            @Html.DropDownList("ArtistId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ArtistId)
         </div>
 
         <div class="editor-label">

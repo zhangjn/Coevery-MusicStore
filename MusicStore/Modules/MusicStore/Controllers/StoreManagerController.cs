@@ -3,9 +3,9 @@ using System.Web.Mvc;
 using Coevery.Data;
 using Coevery.Themes;
 using MusicStore.Models;
+using MusicStore.ViewModels;
 
 namespace MusicStore.Controllers {
-
     //[Authorize(Roles = "Administrator")]
     [Themed]
     public class StoreManagerController : Controller {
@@ -42,8 +42,8 @@ namespace MusicStore.Controllers {
         // GET: /StoreManager/Create
 
         public ActionResult Create() {
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name");
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name");
+            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name");
+            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name");
             return View();
         }
 
@@ -51,22 +51,20 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Create
 
         [HttpPost]
-        public ActionResult Create(Album album){
-            var genreId = int.Parse(Request.Form["Genre_Id"]);
-            var artistId = int.Parse(Request.Form["Artist_Id"]);
-
-            album.Genre = _genreRepository.Get(genreId);
-            album.Artist = _artistRepository.Get(artistId);
+        public ActionResult Create(AlbumViewModel album) {
+            var newAlbum = new Album();
+            TryUpdateModel(newAlbum);
+            newAlbum.Genre = _genreRepository.Get(album.GenreId);
+            newAlbum.Artist = _artistRepository.Get(album.ArtistId);
 
             if(ModelState.IsValid) {
-                
-                _albumRepository.Create(album);
+                _albumRepository.Create(newAlbum);
 
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", genreId);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", artistId);
+            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.GenreId);
+            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.ArtistId);
             return View(album);
         }
 
@@ -74,7 +72,6 @@ namespace MusicStore.Controllers {
         // GET: /StoreManager/Edit/5
 
         public ActionResult Edit(int id) {
-
             Album album = _albumRepository.Get(id);
 
             ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
@@ -87,9 +84,7 @@ namespace MusicStore.Controllers {
 
         [HttpPost]
         public ActionResult Edit(Album album) {
-
-            if(ModelState.IsValid)
-            {
+            if(ModelState.IsValid) {
                 return RedirectToAction("Index");
             }
             ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
