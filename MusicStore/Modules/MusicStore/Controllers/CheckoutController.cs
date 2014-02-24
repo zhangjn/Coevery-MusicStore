@@ -7,7 +7,7 @@ using Coevery.Themes;
 using MusicStore.Models;
 
 namespace MusicStore.Controllers {
-    [Authorize]
+    //[Authorize]
     [Themed]
     public class CheckoutController : Controller {
         private readonly IRepository<Order> _orderRepository;
