@@ -113,8 +113,8 @@ namespace MusicStore.Models {
             // Iterate over the items in the cart, adding the order details for each
             foreach(var item in cartItems) {
                 var orderDetail = new OrderDetail {
-                    Album_Id = item.Album.Id,
-                    Order_Id = order.Id,
+                    Album = item.Album,
+                    Order = order,
                     UnitPrice = item.Album.Price,
                     Quantity = item.Count
                 };
