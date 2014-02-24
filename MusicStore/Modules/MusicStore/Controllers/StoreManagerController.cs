@@ -6,7 +6,7 @@ using MusicStore.Models;
 
 namespace MusicStore.Controllers {
 
-    [Authorize(Roles = "Administrator")]
+    //[Authorize(Roles = "Administrator")]
     [Themed]
     public class StoreManagerController : Controller {
         private readonly IRepository<Album> _albumRepository;
