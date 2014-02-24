@@ -58,8 +58,8 @@ namespace MusicStore.Controllers {
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.Id);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.Id);
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
             return View(album);
         }
 
@@ -68,8 +68,8 @@ namespace MusicStore.Controllers {
 
         public ActionResult Edit(int id) {
             Album album = _albumRepository.Get(id);
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.Id);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.Id);
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
             return View(album);
         }
 
@@ -81,8 +81,8 @@ namespace MusicStore.Controllers {
             if(ModelState.IsValid) {
                 return RedirectToAction("Index");
             }
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.Id);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.Id);
+            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre_Id);
+            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist_Id);
             return View(album);
         }
 
