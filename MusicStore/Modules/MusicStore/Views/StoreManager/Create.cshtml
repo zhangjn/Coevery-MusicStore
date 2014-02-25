@@ -17,7 +17,7 @@
             @Html.LabelFor(model => model.GenreId, "Genre")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("GenreId", String.Empty)
+            @Html.DropDownList("GenreId")
             @Html.ValidationMessageFor(model => model.GenreId)
         </div>
 
@@ -25,7 +25,7 @@
             @Html.LabelFor(model => model.ArtistId, "Artist")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ArtistId", String.Empty)
+            @Html.DropDownList("ArtistId")
             @Html.ValidationMessageFor(model => model.ArtistId)
         </div>
 

@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using MusicStore.Models;
 
 namespace MusicStore.ViewModels {
+    [Bind(Exclude = "Id")]
     public class AlbumViewModel {
         public AlbumViewModel() {}
 

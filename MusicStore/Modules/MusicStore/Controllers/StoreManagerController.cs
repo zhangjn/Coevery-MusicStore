@@ -85,8 +85,8 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(AlbumViewModel albumViewModel) {
-            var album = _albumRepository.Get(albumViewModel.Id);
+        public ActionResult Edit(int id, AlbumViewModel albumViewModel) {
+            var album = _albumRepository.Get(id);
             if(ModelState.IsValid && TryUpdateModel(album)) {
                 album.Genre = _genreRepository.Get(albumViewModel.GenreId);
                 album.Artist = _artistRepository.Get(albumViewModel.ArtistId);
