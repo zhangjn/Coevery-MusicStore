@@ -28,9 +28,10 @@ namespace MusicStore.Controllers {
         //
         // GET: /Store/Browse?genre=Disco
 
-        public ActionResult Browse(string genre) {
+        public ActionResult Browse(string genre)
+        {
             // Retrieve Genre and its Associated Albums from database
-            var genreModel = _genreRepository.Table
+            var genreModel = _genreRepository.Table.Fetch(g => g.Albums)
                 .Single(g => g.Name == genre);
 
             return View(genreModel);
