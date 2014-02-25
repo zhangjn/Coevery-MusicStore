@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Coevery;
 using Coevery.Data;
 using Coevery.Themes;
 using MusicStore.Models;
+using MusicStore.Services;
 using MusicStore.ViewModels;
 
 namespace MusicStore.Controllers {
@@ -11,25 +11,22 @@ namespace MusicStore.Controllers {
     public class ShoppingCartController : Controller {
         private readonly IRepository<Album> _albumRepository;
         private readonly IRepository<Cart> _cartRepository;
+        private readonly IShoppingCartService _shoppingCartService;
 
-        public ShoppingCartController(IRepository<Album> albumRepository, IRepository<Cart> cartRepository, ICoeveryServices services) {
+        public ShoppingCartController(IRepository<Album> albumRepository, IRepository<Cart> cartRepository, IShoppingCartService shoppingCartService) {
             _albumRepository = albumRepository;
             _cartRepository = cartRepository;
-            Services = services;
+            _shoppingCartService = shoppingCartService;
         }
-
-        public ICoeveryServices Services { get; set; }
 
         //
         // GET: /ShoppingCart/
 
         public ActionResult Index() {
-            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
-
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel {
-                CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
+                CartItems = _shoppingCartService.GetCartItems(),
+                CartTotal = _shoppingCartService.GetTotal()
             };
 
             // Return the view
@@ -45,9 +42,7 @@ namespace MusicStore.Controllers {
                 .Single(album => album.Id == id);
 
             // Add it to the shopping cart
-            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
-
-            cart.AddToCart(addedAlbum);
+            _shoppingCartService.AddToCart(addedAlbum);
 
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
@@ -59,21 +54,20 @@ namespace MusicStore.Controllers {
         [HttpPost]
         public ActionResult RemoveFromCart(int id) {
             // Remove the item from the cart
-            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
 
             // Get the name of the album to display confirmation
             string albumName = _cartRepository.Table
                 .Single(item => item.Id == id).Album.Title;
 
             // Remove from cart
-            int itemCount = cart.RemoveFromCart(id);
+            int itemCount = _shoppingCartService.RemoveFromCart(id);
 
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel {
                 Message = Server.HtmlEncode(albumName) +
                           " has been removed from your shopping cart.",
-                CartTotal = cart.GetTotal(),
-                CartCount = cart.GetCount(),
+                CartTotal = _shoppingCartService.GetTotal(),
+                CartCount = _shoppingCartService.GetCount(),
                 ItemCount = itemCount,
                 DeleteId = id
             };
@@ -86,9 +80,7 @@ namespace MusicStore.Controllers {
 
         [ChildActionOnly]
         public ActionResult CartSummary() {
-            var cart = ShoppingCart.GetCart(this.HttpContext, Services);
-
-            ViewData["CartCount"] = cart.GetCount();
+            ViewData["CartCount"] = _shoppingCartService.GetCount();
 
             return PartialView("CartSummary");
         }
