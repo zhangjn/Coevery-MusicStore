@@ -331,6 +331,19 @@ tr:hover
     margin-bottom: 10px;
 }
 
-.zone-content li input {
+.zone-content form li input {
     vertical-align:middle;
 }
+
+.zone-content form div {
+    margin-bottom: 10px;
+}
+
+.zone-content form div {
+    margin-bottom: 10px;
+}
+
+
+
+
+
