@@ -10,6 +10,7 @@
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
     <fieldset>
         <legend>Album</legend>
 
@@ -17,7 +18,7 @@
             @Html.LabelFor(model => model.GenreId, "Genre")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("GenreId")
+            @Html.DropDownList("GenreId",Model.GenreSelectList)
             @Html.ValidationMessageFor(model => model.GenreId)
         </div>
 
@@ -25,7 +26,7 @@
             @Html.LabelFor(model => model.ArtistId, "Artist")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("ArtistId")
+            @Html.DropDownList("ArtistId",Model.ArtistSelectList)
             @Html.ValidationMessageFor(model => model.ArtistId)
         </div>
 

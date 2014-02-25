@@ -14,7 +14,7 @@
                 if (recordToDelete != '') {
 
                     // Perform the ajax post
-                    $.post("@Url.Action("RemoveFromCart")", { "id": recordToDelete },
+                    $.post("@Url.Action("RemoveFromCart")", { "id": recordToDelete, "__RequestVerificationToken": $('input[name=__RequestVerificationToken]').val() },
                         function(data) {
                             // Successful requests get here
                             // Update the page elements
@@ -84,6 +84,7 @@
                 @item.Count
             </td>
             <td>
+                @Html.AntiForgeryToken()
                 <a href="#" class="RemoveLink" data-id="@item.Id">Remove from cart</a>
             </td>
         </tr>

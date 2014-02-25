@@ -44,10 +44,13 @@ namespace MusicStore.Controllers {
         //
         // GET: /StoreManager/Create
 
-        public ActionResult Create() {
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name");
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name");
-            return View();
+        public ActionResult Create()
+        {
+            var newAlbum = new AlbumViewModel();
+
+            newAlbum.GenreSelectList = new SelectList(_genreRepository.Table, "Id", "Name");
+            newAlbum.ArtistSelectList = new SelectList(_artistRepository.Table, "Id", "Name");
+            return View(newAlbum);
         }
 
         //
@@ -63,8 +66,8 @@ namespace MusicStore.Controllers {
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
+            albumViewModel.GenreSelectList = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
+            albumViewModel.ArtistSelectList = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
             return View(albumViewModel);
         }
 
@@ -73,11 +76,11 @@ namespace MusicStore.Controllers {
 
         public ActionResult Edit(int id) {
             Album album = _albumRepository.Get(id);
-
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
-
             var viewModel = new AlbumViewModel(album);
+            viewModel.GenreSelectList = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
+            viewModel.ArtistSelectList = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
+
+            
             return View(viewModel);
         }
 
@@ -93,8 +96,8 @@ namespace MusicStore.Controllers {
                 return RedirectToAction("Index");
             }
             _transactionManager.Cancel();
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
+            albumViewModel.GenreSelectList = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
+            albumViewModel.ArtistSelectList = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
             return View(albumViewModel);
         }
 

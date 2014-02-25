@@ -38,5 +38,8 @@ namespace MusicStore.ViewModels {
         [DisplayName("Album Art URL")]
         [StringLength(1024)]
         public string AlbumArtUrl { get; set; }
+
+        public SelectList GenreSelectList { get; set; }
+        public SelectList ArtistSelectList { get; set; }
     }
 }
