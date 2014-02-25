@@ -1,10 +1,20 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+using MusicStore.Models;
 
 namespace MusicStore.ViewModels {
-    [Bind(Exclude = "Id")]
     public class AlbumViewModel {
+        public AlbumViewModel() {}
+
+        public AlbumViewModel(Album album) {
+            Id = album.Id;
+            GenreId = album.Genre.Id;
+            ArtistId = album.Artist.Id;
+            Title = album.Title;
+            Price = album.Price;
+            AlbumArtUrl = album.AlbumArtUrl;
+        }
+
         [ScaffoldColumn(false)]
         public int Id { get; set; }
 

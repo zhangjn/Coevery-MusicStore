@@ -1,4 +1,4 @@
-﻿@model MusicStore.Models.Album
+﻿@model MusicStore.ViewModels.AlbumViewModel
 
 @{
     Layout.Title = "Edit";
@@ -6,7 +6,6 @@
     Script.Include("jquery.validate.unobtrusive.min.js");
 }
     
-
 <h2>Edit</h2>
 
 @using (Html.BeginForm()) {
@@ -17,19 +16,19 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Genre.Id, "Genre")
+            @Html.LabelFor(model => model.GenreId, "Genre")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Genre_Id", String.Empty)
-            @Html.ValidationMessageFor(model => model.Genre.Id)
+            @Html.DropDownList("GenreId", String.Empty)
+            @Html.ValidationMessageFor(model => model.GenreId)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Artist.Id, "Artist")
+            @Html.LabelFor(model => model.ArtistId, "Artist")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("Artist_Id", String.Empty)
-            @Html.ValidationMessageFor(model => model.Artist.Id)
+            @Html.DropDownList("ArtistId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ArtistId)
         </div>
 
         <div class="editor-label">

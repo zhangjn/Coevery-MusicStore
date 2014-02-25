@@ -12,14 +12,17 @@ namespace MusicStore.Controllers {
         private readonly IRepository<Album> _albumRepository;
         private readonly IRepository<Genre> _genreRepository;
         private readonly IRepository<Artist> _artistRepository;
+        private readonly ITransactionManager _transactionManager;
 
         public StoreManagerController(
             IRepository<Album> albumRepository,
             IRepository<Genre> genreRepository,
-            IRepository<Artist> artistRepository) {
+            IRepository<Artist> artistRepository,
+            ITransactionManager transactionManager) {
             _albumRepository = albumRepository;
             _genreRepository = genreRepository;
             _artistRepository = artistRepository;
+            _transactionManager = transactionManager;
         }
 
         //
@@ -51,21 +54,18 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Create
 
         [HttpPost]
-        public ActionResult Create(AlbumViewModel album) {
-            var newAlbum = new Album();
-            TryUpdateModel(newAlbum);
-            newAlbum.Genre = _genreRepository.Get(album.GenreId);
-            newAlbum.Artist = _artistRepository.Get(album.ArtistId);
-
-            if(ModelState.IsValid) {
-                _albumRepository.Create(newAlbum);
-
+        public ActionResult Create(AlbumViewModel albumViewModel) {
+            var album = new Album();
+            if(ModelState.IsValid && TryUpdateModel(album)) {
+                album.Genre = _genreRepository.Get(albumViewModel.GenreId);
+                album.Artist = _artistRepository.Get(albumViewModel.ArtistId);
+                _albumRepository.Create(album);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.GenreId);
-            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.ArtistId);
-            return View(album);
+            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
+            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
+            return View(albumViewModel);
         }
 
         //
@@ -74,22 +74,28 @@ namespace MusicStore.Controllers {
         public ActionResult Edit(int id) {
             Album album = _albumRepository.Get(id);
 
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
-            return View(album);
+            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
+            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
+
+            var viewModel = new AlbumViewModel(album);
+            return View(viewModel);
         }
 
         //
         // POST: /StoreManager/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Album album) {
-            if(ModelState.IsValid) {
+        public ActionResult Edit(AlbumViewModel albumViewModel) {
+            var album = _albumRepository.Get(albumViewModel.Id);
+            if(ModelState.IsValid && TryUpdateModel(album)) {
+                album.Genre = _genreRepository.Get(albumViewModel.GenreId);
+                album.Artist = _artistRepository.Get(albumViewModel.ArtistId);
                 return RedirectToAction("Index");
             }
-            ViewBag.Genre_Id = new SelectList(_genreRepository.Table, "Id", "Name", album.Genre.Id);
-            ViewBag.Artist_Id = new SelectList(_artistRepository.Table, "Id", "Name", album.Artist.Id);
-            return View(album);
+            _transactionManager.Cancel();
+            ViewBag.GenreId = new SelectList(_genreRepository.Table, "Id", "Name", albumViewModel.GenreId);
+            ViewBag.ArtistId = new SelectList(_artistRepository.Table, "Id", "Name", albumViewModel.ArtistId);
+            return View(albumViewModel);
         }
 
         //
