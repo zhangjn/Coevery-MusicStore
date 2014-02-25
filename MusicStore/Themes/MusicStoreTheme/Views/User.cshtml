@@ -1,0 +1,15 @@
+﻿@using System.Web.Mvc;
+
+@if (WorkContext.CurrentUser != null)
+{
+    <span>
+        @T("Welcome, <strong>{0}</strong>!", "<a href=\"" + @Url.Action("ChangePassword", new {Controller = "Account", Area = "Coevery.Users"}) + "\">" + @Html.ItemDisplayText(WorkContext.CurrentUser) + "</a>")
+    </span>
+    <span>
+        @Html.ActionLink(T("Sign Out").ToString(), "LogOff", new {Controller = "Account", Area = "Coevery.Users", ReturnUrl = Context.Request.RawUrl}, new {rel = "nofollow"})
+    </span>
+}
+else
+{
+    <span>@Html.ActionLink(T("Sign In").ToString(), "LogOn", new {Controller = "Account", Area = "Coevery.Users", ReturnUrl = (Request.QueryString["ReturnUrl"] ?? Request.RawUrl)}, new {rel = "nofollow"})</span>
+}

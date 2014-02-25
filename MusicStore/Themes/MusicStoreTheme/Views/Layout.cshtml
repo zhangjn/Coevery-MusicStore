@@ -6,15 +6,19 @@
 
 <div id="header">
     <h1><a href="/">ASP.NET MVC MUSIC STORE</a></h1>
+    @Display(New.User())
     <ul id="navlist">
         <li class="first"><a href="@Url.Content("~")" id="current">Home</a></li>
         <li><a href="@Url.Action("Index", "Store")">Store</a></li>
-        <li>@{ Html.RenderAction("CartSummary", "ShoppingCart"); }</li>
-        <li><a href="@Url.Action("Index", "StoreManager")">Admin</a></li>
-    </ul>        
+        <li>@{ Html.RenderAction("CartSummary", new {Controller = "ShoppingCart", Area = "MusicStore"});}</li>
+        @if (AuthorizedFor(Coevery.Security.StandardPermissions.AccessAdminPanel))
+        {
+            <li><a href="@Url.Action("Index", new {Controller = "StoreManager", Area = "MusicStore"})">Admin</a></li>
+        }
+    </ul>     
 </div>
 
-@{ Html.RenderAction("GenreMenu", "Store"); }
+@{ Html.RenderAction("GenreMenu", new {Controller = "Store", Area = "MusicStore"}); }
 
 <div id="main">
     @if(Model.Content != null) {
@@ -23,5 +27,5 @@
 </div>
 
 <div id="footer">
-    built with <a href="http://asp.net/mvc">ASP.NET MVC 3</a>
+    Built with <a href="https://github.com/Coevery/Coevery-Framework">Coevery Framework</a>
 </div>
