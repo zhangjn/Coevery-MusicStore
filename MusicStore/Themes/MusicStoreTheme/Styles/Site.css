@@ -328,4 +328,9 @@ tr:hover
 
 .zone-content li {
     list-style: none;
+    margin-bottom: 10px;
+}
+
+.zone-content li input {
+    vertical-align:middle;
 }
