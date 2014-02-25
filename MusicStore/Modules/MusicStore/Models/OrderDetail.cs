@@ -1,8 +1,6 @@
 ﻿namespace MusicStore.Models {
     public class OrderDetail {
         public virtual int Id { get; set; }
-        //public virtual int Order_Id { get; set; }
-        //public virtual int Album_Id { get; set; }
         public virtual int Quantity { get; set; }
         public virtual decimal UnitPrice { get; set; }
 
