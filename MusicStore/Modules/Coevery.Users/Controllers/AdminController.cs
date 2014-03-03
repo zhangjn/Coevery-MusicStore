@@ -266,7 +266,7 @@ namespace Coevery.Users.Controllers {
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int id) {
             if (!Services.Authorizer.Authorize(StandardPermissions.SiteOwner, T("Not authorized to manage users")))
                 return new HttpUnauthorizedResult();

@@ -165,6 +165,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\Common\Module.txt" />
+    <Content Include="Core\Common\Scripts\base.js" />
+    <Content Include="Core\Common\Scripts\html5.js" />
+    <Content Include="Core\Common\Scripts\jquery.switchable.js" />
+    <Content Include="Core\Common\Styles\Images\detail-view-on.gif" />
+    <Content Include="Core\Common\Styles\Images\detail-view.gif" />
+    <Content Include="Core\Common\Styles\Images\summary-view-on.gif" />
+    <Content Include="Core\Common\Styles\Images\summary-view.gif" />
+    <Content Include="Core\Common\Styles\Images\toolBarActiveButtonBackground.gif" />
+    <Content Include="Core\Common\Styles\Images\toolBarBackground.gif" />
+    <Content Include="Core\Common\Styles\Images\toolBarHoverButtonBackground.gif" />
+    <Content Include="Core\Common\Styles\jquery.switchable.css" />
+    <Content Include="Core\Common\Styles\special.css" />
     <Content Include="Global.asax" />
     <Content Include="Themes\MusicStoreTheme\Content\Images\home-showcase.png" />
     <Content Include="Themes\MusicStoreTheme\Content\Images\logo.png" />
@@ -196,6 +209,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Themes\MusicStoreTheme\Views\User.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core\Common\Scripts\Web.config" />
+    <Content Include="Core\Common\Styles\Web.config" />
+    <Content Include="Core\Common\Views\Breadcrumb.cshtml" />
+    <Content Include="Core\Common\Views\Document.cshtml" />
+    <Content Include="Core\Common\Views\ErrorPage.cshtml" />
+    <Content Include="Core\Common\Views\Header.cshtml" />
+    <Content Include="Core\Common\Views\HeadPreload.cshtml" />
+    <Content Include="Core\Common\Views\Home\Index.cshtml" />
+    <Content Include="Core\Common\Views\Layout.cshtml" />
+    <Content Include="Core\Common\Views\LocalMenu.cshtml" />
+    <Content Include="Core\Common\Views\LocalMenuItem.cshtml" />
+    <Content Include="Core\Common\Views\Menu.cshtml" />
+    <Content Include="Core\Common\Views\MenuItem.cshtml" />
+    <Content Include="Core\Common\Views\MenuItemLink.cshtml" />
+    <Content Include="Core\Common\Views\Message.cshtml" />
+    <Content Include="Core\Common\Views\NotFound.cshtml" />
+    <Content Include="Core\Common\Views\ShapeResult\Display.cshtml" />
+    <Content Include="Core\Common\Views\ShapeResult\DisplayPartial.cshtml" />
+    <Content Include="Core\Common\Views\User.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,11 +1,21 @@
 ﻿@model Coevery.Users.ViewModels.UserEditViewModel
 <fieldset>
-    @Html.LabelFor(m => m.UserName, T("User Name"))
-    @Html.TextBoxFor(m=>m.UserName, new { @class = "text medium" })
-    @Html.ValidationMessageFor(m=>m.UserName, "*")
-</fieldset>
-<fieldset>
-    @Html.LabelFor(m => m.Email, T("Email"))
-    @Html.TextBoxFor(m=>m.Email, new { @class = "text medium" })
-    @Html.ValidationMessageFor(m=>m.Email, "*")
+    <div>
+        @Html.LabelFor(m => m.UserName, T("User Name"))
+        <br />
+        @Html.TextBoxFor(m=>m.UserName, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m=>m.UserName, "*")
+    </div>
+    
+    <div>
+        @Html.LabelFor(m => m.Email, T("Email"))
+        <br />
+        @Html.TextBoxFor(m=>m.Email, new { @class = "text medium" })
+        @Html.ValidationMessageFor(m=>m.Email, "*")
+    </div>
+    
+    <div>
+            <button class="primaryAction" type="submit">@T("Save")</button>
+    </div>
+    
 </fieldset>

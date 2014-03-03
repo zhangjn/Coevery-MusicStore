@@ -27,7 +27,7 @@ namespace MusicStore.Controllers {
 
         //
         // GET: /StoreManager/
-
+        [Authorize]
         public ViewResult Index() {
             var albums = _albumRepository.Table;
             return View(albums.ToList());
@@ -36,6 +36,7 @@ namespace MusicStore.Controllers {
         //
         // GET: /StoreManager/Details/5
 
+        [Authorize]
         public ViewResult Details(int id) {
             Album album = _albumRepository.Get(id);
             return View(album);
@@ -44,6 +45,7 @@ namespace MusicStore.Controllers {
         //
         // GET: /StoreManager/Create
 
+        [Authorize]
         public ActionResult Create()
         {
             var newAlbum = new AlbumViewModel();
@@ -57,6 +59,7 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Create
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(AlbumViewModel albumViewModel) {
             var album = new Album();
             if(ModelState.IsValid && TryUpdateModel(album)) {
@@ -74,6 +77,7 @@ namespace MusicStore.Controllers {
         //
         // GET: /StoreManager/Edit/5
 
+        [Authorize]
         public ActionResult Edit(int id) {
             Album album = _albumRepository.Get(id);
             var viewModel = new AlbumViewModel(album);
@@ -88,6 +92,7 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Edit/5
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, AlbumViewModel albumViewModel) {
             var album = _albumRepository.Get(id);
             if(ModelState.IsValid && TryUpdateModel(album)) {
@@ -104,6 +109,7 @@ namespace MusicStore.Controllers {
         //
         // GET: /StoreManager/Delete/5
 
+        [Authorize]
         public ActionResult Delete(int id) {
             Album album = _albumRepository.Get(id);
             return View(album);
@@ -113,6 +119,7 @@ namespace MusicStore.Controllers {
         // POST: /StoreManager/Delete/5
 
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id) {
             Album album = _albumRepository.Get(id);
             _albumRepository.Delete(album);
